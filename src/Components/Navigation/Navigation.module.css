@@ -1,0 +1,44 @@
+.container {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  background-color: pink;
+}
+
+.nav {
+  display: inline-flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.link {
+  position: relative;
+  margin-right: 20px;
+  overflow: hidden;
+
+  color: black;
+}
+
+.link::before {
+  content: ' ';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 5px;
+  background-color: blue;
+  transform: translateX(-100%);
+
+  transition: transform 250ms ease-in-out;
+}
+
+.link:hover::before {
+  transform: translateX(0);
+}
+
+.link:not(:last-child) {
+  margin-right: 20px;
+}
+
+.activeLink {
+  color: blue;
+}

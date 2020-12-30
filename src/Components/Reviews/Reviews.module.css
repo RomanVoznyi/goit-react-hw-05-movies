@@ -1,0 +1,31 @@
+.reviewList {
+  margin-top: 20px;
+  border: 1px solid rgba(0, 0, 255, 0.5);
+  padding: 10px;
+}
+
+.reviewItem {
+  display: flex;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+.imageBox {
+  min-width: 100px;
+  max-width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 5px;
+}
+
+.reviewsBox {
+  padding: 5px;
+}
+
+.content {
+  max-height: 100px;
+  overflow: auto;
+}

@@ -13,8 +13,8 @@ const Review = lazy(() =>
 
 const Movies = () => {
   const { movieId } = useParams();
-  const { url, path } = useRouteMatch();
   const [movie, setMovie] = useState(null);
+  const { url, path } = useRouteMatch();
 
   useEffect(() => {
     api.getMovieDetails(movieId).then(movie => {
@@ -30,29 +30,35 @@ const Movies = () => {
           <img
             className={s.poster}
             src={
-              `https://image.tmdb.org/t/p/w600_and_h900_bestv2/${movie.poster_path}` ||
-              'https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Noimage.svg/555px-Noimage.svg.png'
+              movie.poster_path
+                ? `https://image.tmdb.org/t/p/w600_and_h900_bestv2/${movie.poster_path}`
+                : 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Noimage.svg/555px-Noimage.svg.png'
             }
             alt={movie.title || movie.name}
           ></img>
+
           <p className={s.movieItem}>
             Genres:
             <span className={s.descript}>
               {movie.genres.map(genre => genre.name).join(' / ')}
             </span>
           </p>
+
           <p className={s.movieItem}>
             Release date:
             <span className={s.descript}> {movie.release_date || ''} </span>
           </p>
+
           <p className={s.movieItem}>
             Vote:<span className={s.vote}> {movie.vote_average} </span>/ Votes:{' '}
             <span className={s.vote}> {movie.vote_count} </span>
           </p>
+
           <p className={s.movieItem}>
             About:
             <span className={s.descript}>{movie.overview}</span>
           </p>
+
           <p className={s.movieItem}>
             <NavLink
               to={`${url}/cast`}

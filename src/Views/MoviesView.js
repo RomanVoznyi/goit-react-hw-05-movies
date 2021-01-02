@@ -1,36 +1,53 @@
-import { useState } from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { Pagination } from '@material-ui/lab';
 import SearchBar from '../Components/SearchBar';
+import MoviesList from '../Components/MoviesList';
 import * as api from '../Services/apiServices';
-import s from './ViewStyles.module.css';
 
 const Movies = () => {
   const [movies, setMovies] = useState(null);
-  const { url } = useRouteMatch();
+  const [request, setRequest] = useState('');
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
-  const onClick = request => {
-    api.searchMovies(request).then(data => {
+  useEffect(() => {
+    if (!request) {
+      return;
+    }
+
+    api.searchMovies(request, page).then(data => {
       if (!data.results.length) {
         toast.error('Nothing was found. Try again.');
         return;
       }
       setMovies(data.results);
+      setTotalPages(data.total_pages);
     });
+  }, [request, page]);
+
+  const onClick = request => {
+    setRequest(request);
+    setPage(1);
+  };
+
+  const handleChange = (evt, value) => {
+    setPage(value);
   };
 
   return (
     <>
-      <ToastContainer autoClose={2000} />
       <SearchBar onClick={onClick} />
-      {movies && (
-        <ul className={s.container}>
-          {movies.map(film => (
-            <li className={s.link} key={film.id}>
-              <Link to={`${url}/${film.id}`}>{film.title || film.name}</Link>
-            </li>
-          ))}
-        </ul>
+      {movies && <MoviesList movies={movies} />}
+
+      {totalPages > 1 && (
+        <Pagination
+          count={totalPages}
+          page={page}
+          onChange={handleChange}
+          boundaryCount={2}
+          color="secondary"
+        />
       )}
     </>
   );

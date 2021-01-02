@@ -8,14 +8,14 @@ const fetchRequest = async (path, config = '') => {
     : Promise.reject(new Error('Not found'));
 };
 
-const getPopular = () => {
-  return fetchRequest('/trending/all/day');
+const getPopular = page => {
+  return fetchRequest('/trending/all/day', `&page=${page}`);
 };
 
-const searchMovies = request => {
+const searchMovies = (request, page) => {
   return fetchRequest(
     '/search/movie',
-    `&language=en-US&query=${request}&page=1&include_adult=false`,
+    `&language=en-US&query=${request}&page=${page}&include_adult=false`,
   );
 };
 
@@ -27,8 +27,11 @@ const getCastList = movieId => {
   return fetchRequest(`/movie/${movieId}/credits`, `&language=en-US`);
 };
 
-const getReviews = movieId => {
-  return fetchRequest(`/movie/${movieId}/reviews`, `&language=en-US&page=1`);
+const getReviews = (movieId, page) => {
+  return fetchRequest(
+    `/movie/${movieId}/reviews`,
+    `&language=en-US&page=${page}`,
+  );
 };
 
 export { getPopular, searchMovies, getMovieDetails, getCastList, getReviews };

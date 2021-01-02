@@ -1,17 +1,19 @@
 .container {
+  padding: 15px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   background-color: pink;
 }
 
-.nav {
-  display: inline-flex;
+.navigation {
+  display: flex;
   align-items: center;
-  padding: 15px;
+  margin-bottom: 15px;
+
+  font-weight: 500;
 }
 
 .link {
   position: relative;
-  margin-right: 20px;
   overflow: hidden;
 
   color: black;
@@ -41,4 +43,25 @@
 
 .activeLink {
   color: blue;
+}
+
+.moveButton {
+  padding: 3px 5px;
+  margin-right: 10px;
+
+  font: inherit;
+  font-size: 12px;
+  background-color: grey;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+.moveButton:hover {
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.moveButton:focus {
+  background-color: rgba(0, 0, 255, 0.5);
 }

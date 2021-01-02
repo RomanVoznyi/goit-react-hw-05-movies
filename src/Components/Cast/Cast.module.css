@@ -1,15 +1,19 @@
+.container {
+  padding: 10px;
+  border: 1px solid blue;
+}
+
 .castList {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   align-items: stretch;
   flex-wrap: wrap;
-  margin-top: 20px;
-  border: 1px solid rgba(0, 0, 255, 0.5);
-  padding: 10px;
+  margin-bottom: 10px;
 }
 
 .castItem {
-  width: calc(20% - 10px);
+  width: calc(10% - 10px);
+  min-height: 200px;
   margin: 5px;
   text-align: center;
   border-radius: 4px;
@@ -18,19 +22,27 @@
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
 }
 
-.lastItem {
-  font-size: 30px;
-  margin-top: auto;
-}
-
 .photo {
   margin-bottom: 10px;
   background-color: gray;
 }
 
+.descriptBox {
+  padding: 5px;
+}
+
 .name {
-  margin-bottom: 10px;
-  font-size: 18px;
+  margin-bottom: 5px;
+  font-size: 14px;
 
   color: orangered;
+}
+
+.roleBox {
+  text-align: left;
+  font-size: 12px;
+}
+
+.role {
+  font-weight: 500;
 }

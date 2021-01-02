@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import s from './SearchBar.module.css';
 
 const SearchBar = ({ onClick }) => {
@@ -22,7 +22,6 @@ const SearchBar = ({ onClick }) => {
 
   return (
     <form className={s.searchBar} onSubmit={handleClick}>
-      <ToastContainer autoClose={2000} />
       <label>
         <input
           className={s.input}
